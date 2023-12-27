@@ -1,0 +1,8 @@
+{
+    "/embedded": {
+        "target": "https://testsecureacceptance.cybersource.com/",
+        "secure": true,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}
