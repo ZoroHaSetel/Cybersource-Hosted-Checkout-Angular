@@ -1,3 +1,4 @@
+
 import { DatePipe } from '@angular/common';
 import { AfterViewInit, Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -47,9 +48,9 @@ export class AppComponent {
     form.appendChild(this.createHiddenElement('bill_to_address_country', 'vn'));
     form.appendChild(this.createHiddenElement('bill_to_email', 'testaccount@gmail.com'));
     form.appendChild(this.createHiddenElement('bill_to_surname', 'zod'));
-    //form.appendChild(this.createHiddenElement('bill_to_forename', 'zod'));
+    form.appendChild(this.createHiddenElement('bill_to_forename', 'zod'));
     form.appendChild(this.createHiddenElement('override_custom_cancel_page', 'https://support.cybersource.com/knowledgebase/knowledgearticle/?code=000001662'));
-    form.appendChild(this.createHiddenElement('override_custom_receipt_page', 'https://support.cybersource.com/'));
+    form.appendChild(this.createHiddenElement('override_custom_receipt_page', 'https://support.cybersource.com/knowledgebase/knowledgearticle/?code=000001662'));
     
 
     form.appendChild(this.createHiddenElement('signature', this.sign()));        
@@ -93,7 +94,7 @@ export class AppComponent {
     return new Date(now.getTime() + (now.getTimezoneOffset() * 60000));
   }
 
-  public sign(): string {
+public sign(): string {
     this.dataToSign = this.dataToSign.substring(0, this.dataToSign.length - 1);        
     return this.signData(this.dataToSign, environment.SECRET_KEY);
   }
