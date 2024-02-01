@@ -38,7 +38,7 @@ export class AppComponent {
     form.appendChild(this.createHiddenElement('signed_date_time', this.dateString()));
     form.appendChild(this.createHiddenElement('locale', 'en-US'));
     form.appendChild(this.createHiddenElement('transaction_type', environment.transactionType));
-    form.appendChild(this.createHiddenElement('reference_number', '123456789'));
+    form.appendChild(this.createHiddenElement('reference_number', '64639550379964'));
     form.appendChild(this.createHiddenElement('amount', '25'));    
     form.appendChild(this.createHiddenElement('currency', 'usd'));
 
@@ -47,15 +47,31 @@ export class AppComponent {
     form.appendChild(this.createHiddenElement('bill_to_address_country', 'vn'));
     form.appendChild(this.createHiddenElement('bill_to_email', 'testaccount@gmail.com'));
     form.appendChild(this.createHiddenElement('bill_to_surname', 'zod'));
-    form.appendChild(this.createHiddenElement('bill_to_forename', 'zod'));
+    //form.appendChild(this.createHiddenElement('bill_to_forename', 'zod'));
+    form.appendChild(this.createHiddenElement('override_custom_cancel_page', 'https://support.cybersource.com/knowledgebase/knowledgearticle/?code=000001662'));
+    form.appendChild(this.createHiddenElement('override_custom_receipt_page', 'https://support.cybersource.com/'));
+    
 
     form.appendChild(this.createHiddenElement('signature', this.sign()));        
+    console.log(form)
+    console.log(this.formToObject(form))
     window.document.body.appendChild(form);
     form.submit();
   }
   // map https://www.paypalobjects.com/en_AU/vhelp/paypalmanager_help/credit_card_numbers.html
     // https://support.cybersource.com/knowledgebase/knowledgearticle/?code=KA-04583
 
+  formToObject(form) {
+      const formData = new FormData(form);
+      const object = {};
+  
+      formData.forEach((value, key) => {
+          object[key] = value;
+      });
+  
+      return object;
+  }
+  
   // create the form
   private createHiddenElement(name: string, value: string): HTMLInputElement {
     const hiddenField = document.createElement('input');
